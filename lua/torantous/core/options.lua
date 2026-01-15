@@ -27,9 +27,19 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
-vim.opt.fillchars = { eob = " ", vert = "│" }
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+  vert = "│",
+}
 vim.opt.list = true
 vim.opt.listchars = { tab = "→ ", trail = "·", extends = "›", precedes = "‹" }
 vim.opt.pumblend = 10
 vim.opt.winblend = 10
 vim.opt.showmode = false
+vim.opt.laststatus = 3
+vim.opt.smoothscroll = true
