@@ -123,6 +123,9 @@ return {
     "gelguy/wilder.nvim",
     event = "CmdlineEnter",
     dependencies = { "romgrk/fzy-lua-native" },
+    cond = function()
+      return vim.fn.has("python3") == 1
+    end,
     config = function()
       local wilder = require("wilder")
       local mocha = require("catppuccin.palettes").get_palette("mocha")
