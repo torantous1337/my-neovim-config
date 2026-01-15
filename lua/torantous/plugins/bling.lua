@@ -93,13 +93,15 @@ return {
   {
     "gorbit99/codewindow.nvim",
     event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       local codewindow = require("codewindow")
+      local has_ts = pcall(require, "nvim-treesitter.ts_utils")
       codewindow.setup({
         auto_enable = false,
         minimap_width = 15,
         width_multiplier = 4,
-        use_treesitter = true,
+        use_treesitter = has_ts,
         use_git = true,
         z_index = 1,
         screen_bounds = "lines",
