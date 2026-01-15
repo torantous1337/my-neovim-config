@@ -242,7 +242,7 @@ return {
 
       local diff = {
         "diff",
-        symbols = { added = " ", modified = " ", removed = " " },
+        symbols = { added = " ", modified = "󰝤 ", removed = " " },
         colored = true,
         diff_color = {
           added = { fg = mocha.green },
@@ -307,6 +307,13 @@ return {
         end,
       }
 
+      local clock = {
+        function()
+          return os.date(" %H:%M")
+        end,
+        color = { fg = mocha.sky },
+      }
+
       require("lualine").setup({
         options = {
           theme = "catppuccin",
@@ -329,7 +336,7 @@ return {
           lualine_y = {
             { "progress", color = { fg = mocha.peach } },
           },
-          lualine_z = { location },
+          lualine_z = { location, clock },
         },
         inactive_sections = {
           lualine_a = {},
@@ -556,18 +563,25 @@ return {
 
       -- Sick ASCII art header
       dashboard.section.header.val = {
-        [[                                                                     ]],
-        [[       ████ ██████           █████      ██                     ]],
-        [[      ███████████             █████                             ]],
-        [[      █████████ ███████████████████ ███   ███████████   ]],
-        [[     █████████  ███    █████████████ █████ ██████████████   ]],
-        [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-        [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-        [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-        [[                                                                       ]],
-        [[               ⚡ T O R A N T O U S 1 3 3 7 ⚡                          ]],
-        [[                   [ TERMINAL ARCHITECT ]                              ]],
-        [[                                                                       ]],
+        [[                                                                              ]],
+        [[  ████████╗ ██████╗ ██████╗  █████╗ ███╗   ██╗████████╗ ██████╗ ██╗   ██╗███████╗]],
+        [[  ╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗████╗  ██║╚══██╔══╝██╔═══██╗██║   ██║██╔════╝]],
+        [[     ██║   ██║   ██║██████╔╝███████║██╔██╗ ██║   ██║   ██║   ██║██║   ██║███████╗]],
+        [[     ██║   ██║   ██║██╔══██╗██╔══██║██║╚██╗██║   ██║   ██║   ██║██║   ██║╚════██║]],
+        [[     ██║   ╚██████╔╝██║  ██║██║  ██║██║ ╚████║   ██║   ╚██████╔╝╚██████╔╝███████║]],
+        [[     ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝]],
+        [[                                                                              ]],
+        [[          ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗                   ]],
+        [[          ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║                   ]],
+        [[          ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║                   ]],
+        [[          ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║                   ]],
+        [[          ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║                   ]],
+        [[          ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝                   ]],
+        [[                                                                              ]],
+        [[   ╔══════════════════════════════════════════════════════════════════════╗   ]],
+        [[   ║  ⚡ 1 3 3 7 ⚡  │  🔥 T E R M I N A L   A R C H I T E C T 🔥  │  💀  ║   ]],
+        [[   ╚══════════════════════════════════════════════════════════════════════╝   ]],
+        [[                                                                              ]],
       }
 
       -- Stylish buttons
@@ -611,8 +625,28 @@ return {
         }
       end
 
-      -- Highlights
-      dashboard.section.header.opts.hl = "AlphaHeader"
+      -- Highlights with rainbow gradient per line
+      dashboard.section.header.opts.hl = {
+        { { "AlphaHeaderRed", 0, -1 } },
+        { { "AlphaHeaderPeach", 0, -1 } },
+        { { "AlphaHeaderYellow", 0, -1 } },
+        { { "AlphaHeaderGreen", 0, -1 } },
+        { { "AlphaHeaderSky", 0, -1 } },
+        { { "AlphaHeaderBlue", 0, -1 } },
+        { { "AlphaHeaderMauve", 0, -1 } },
+        { { "AlphaHeaderRed", 0, -1 } },
+        { { "AlphaHeaderPeach", 0, -1 } },
+        { { "AlphaHeaderYellow", 0, -1 } },
+        { { "AlphaHeaderGreen", 0, -1 } },
+        { { "AlphaHeaderSky", 0, -1 } },
+        { { "AlphaHeaderBlue", 0, -1 } },
+        { { "AlphaHeaderMauve", 0, -1 } },
+        { { "AlphaHeaderRed", 0, -1 } },
+        { { "AlphaHeaderPeach", 0, -1 } },
+        { { "AlphaHeaderYellow", 0, -1 } },
+        { { "AlphaHeaderGreen", 0, -1 } },
+        { { "AlphaHeaderSky", 0, -1 } },
+      }
       dashboard.section.footer.opts.hl = "AlphaFooter"
 
       -- Layout
@@ -625,8 +659,14 @@ return {
         dashboard.section.footer,
       }
 
-      -- Custom highlights
-      vim.api.nvim_set_hl(0, "AlphaHeader", { fg = mocha.mauve })
+      -- Custom highlights with rainbow gradient for header
+      vim.api.nvim_set_hl(0, "AlphaHeaderRed", { fg = "#f38ba8" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderPeach", { fg = "#fab387" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderYellow", { fg = "#f9e2af" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderGreen", { fg = "#a6e3a1" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderSky", { fg = "#89dceb" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderBlue", { fg = "#89b4fa" })
+      vim.api.nvim_set_hl(0, "AlphaHeaderMauve", { fg = "#cba6f7" })
       vim.api.nvim_set_hl(0, "AlphaButtons", { fg = mocha.text })
       vim.api.nvim_set_hl(0, "AlphaShortcut", { fg = mocha.peach, bold = true })
       vim.api.nvim_set_hl(0, "AlphaFooter", { fg = mocha.overlay1, italic = true })
@@ -735,7 +775,7 @@ return {
 
       require("notify").setup({
         background_colour = mocha.base,
-        fps = 60,
+        fps = 144,
         icons = {
           DEBUG = " ",
           ERROR = " ",
@@ -749,8 +789,15 @@ return {
         render = "wrapped-compact",
         stages = "fade_in_slide_out",
         timeout = 3000,
-        top_down = true,
+        top_down = false,
       })
+
+      -- Custom neon glow highlights for notification borders
+      vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = mocha.red })
+      vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = mocha.yellow })
+      vim.api.nvim_set_hl(0, "NotifyINFOBorder", { fg = mocha.green })
+      vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg = mocha.sky })
+      vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg = mocha.mauve })
 
       vim.notify = require("notify")
     end,
@@ -895,65 +942,6 @@ return {
       })
     end,
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
-    event = "VeryLazy",
-    config = function()
-      require("lualine").setup({
-        options = {
-          theme = "catppuccin",
-          section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
-          globalstatus = true,
-        },
-        sections = {
-          lualine_a = { { "mode", icon = "", separator = "" } },
-          lualine_b = { "branch", "diff" },
-          lualine_c = { { "filename", path = 1 } },
-          lualine_x = { "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
-        },
-      })
-    end,
-  },
-
-  -- BUFFERLINE (beautiful tabs)
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
-    event = "VeryLazy",
-    config = function()
-      local mocha = require("catppuccin.palettes").get_palette("mocha")
-      require("bufferline").setup({
-        options = {
-          mode = "buffers",
-          indicator = { icon = "▎" },
-          buffer_close_icon = "󰅖",
-          modified_icon = "●",
-          diagnostics = "nvim_lsp",
-          separator_style = "slant",
-          offsets = {
-            { filetype = "NvimTree", text = "  File Explorer", text_align = "center", separator = true },
-          },
-          color_icons = true,
-          show_buffer_icons = true,
-          show_buffer_close_icons = true,
-          show_tab_indicators = true,
-          always_show_bufferline = true,
-          hover = { enabled = true, delay = 100, reveal = { "close" } },
-        },
-        highlights = {
-          fill = { bg = mocha.crust },
-          background = { fg = mocha.overlay1, bg = mocha.mantle },
-          buffer_selected = { fg = mocha.text, bg = mocha.base, bold = true },
-          -- ...other highlight mappings as per your last file, keep them!
-        },
-      })
-    end,
-  },
 
   -- TABBYY (neon VSCode-style tabline, workspace outlines)
   {
@@ -985,22 +973,6 @@ return {
 
   -- NOTIFY (beautiful notifications, with animation)
   {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    config = function()
-      require("notify").setup({
-        background_colour = "#1e1e2e",
-        fps = 120,
-        stages = "slide",
-        top_down = false,
-        timeout = 4000,
-        icons = { ERROR = "", WARN = "", INFO = "", DEBUG = "", TRACE = "✎" },
-        render = "minimal",
-      })
-      vim.notify = require("notify")
-    end,
-  },
-
   -- MINI ANIMATIONS (smooth scrolling + cursor)
   -- [same as before]
 
