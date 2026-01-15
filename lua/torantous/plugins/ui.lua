@@ -971,11 +971,6 @@ return {
   -- ALPHA (dashboard)
   -- [same as before]
 
-  -- NOTIFY (beautiful notifications, with animation)
-  {
-  -- MINI ANIMATIONS (smooth scrolling + cursor)
-  -- [same as before]
-
   -- SMOOTH CURSOR (macchiato neon tail)
   {
     "gen740/SmoothCursor.nvim",
