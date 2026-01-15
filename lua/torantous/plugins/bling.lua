@@ -37,7 +37,8 @@ return {
             for severity, icon in pairs(icons) do
               local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
               if n > 0 then
-                table.insert(label, { icon .. n .. " ", group = "DiagnosticSign" .. string.upper(severity):sub(1, 1) .. string.lower(severity):sub(2) })
+                local hl_map = { error = "Error", warn = "Warn", info = "Info", hint = "Hint" }
+                table.insert(label, { icon .. n .. " ", group = "DiagnosticSign" .. hl_map[severity] })
               end
             end
             return label
@@ -50,9 +51,10 @@ return {
             if not signs then
               return labels
             end
+            local name_map = { removed = "Removed", changed = "Changed", added = "Added" }
             for name, icon in pairs(icons) do
               if tonumber(signs[name]) and signs[name] > 0 then
-                table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name })
+                table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name_map[name] })
               end
             end
             return labels
