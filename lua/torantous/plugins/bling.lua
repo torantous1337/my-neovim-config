@@ -94,6 +94,9 @@ return {
     "gorbit99/codewindow.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cond = function()
+      return pcall(require, "nvim-treesitter.ts_utils")
+    end,
     config = function()
       local codewindow = require("codewindow")
       local has_ts = pcall(require, "nvim-treesitter.ts_utils")
